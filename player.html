@@ -6,16 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Player</title>
+    <!-- Favicon -->
+    <link rel="icon" href="source/icon-headphones-secondary.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="source/icon-headphones-secondary.png" type="image/x-icon" />
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+    <style>
+        /* secondary - #6c757d */
+        /* primary - #007bff */
+        /* success - #28a745 */
+        /* info - #17a2b8 */
+        /* dark - #343a40 */
+        input[type=range]::-webkit-slider-thumb {
+            background: #6c757d;    
+        }
+
+        /* All the same stuff for Firefox */
+        input[type=range]::-moz-range-thumb {
+            background: #6c757d;
+        }
+
+        /* All the same stuff for IE */
+        input[type=range]::-ms-thumb {
+            background: #6c757d;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
-        <h3 class="text-monospace text-center">Radio Player</h3>
-        <div id="caption" class="text-monospace text-center"></div>
-<div id="stations" class="row justify-content-around"></div>
+        <h3 class="text-monospace text-center"><img src="source/icon-headphones-secondary.png" alt="" srcset="" height="24px"
+                width="24px">
+            Radio Player</h3>
+        <br>
+        <div class="contaiter d-block d-sm-flex text-center">
+            <div id="caption" class="text-monospace  col font-weight-bold"></div>
+            <input type="range" class="custom-range col-10 col-sm-2" min="0" max="1" step="0.01" id="rangeVolume"
+                onchange="changeEventHandle(event);">
+        </div>
+        <br>
+        <div id="stations" class="row justify-content-around"></div>
         <div id="description"></div>
     </div>
     <script src="./js/howler.js/howler.core.min.js"></script>

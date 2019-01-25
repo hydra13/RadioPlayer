@@ -1,19 +1,21 @@
 let sound = null;
 let currentBtn = '';
+// let btnColor = 'info';
+let btnColor = 'secondary';
 
-function changeActivation(id){
-    if (currentBtn != id){
+function changeActivation(id) {
+    if (currentBtn != id) {
         let attClass = null;
-        if (currentBtn !== ''){
+        if (currentBtn !== '') {
             let oldBtn = document.getElementById(currentBtn);
             attClass = oldBtn.getAttributeNode('class');
-            attClass.value = "btn btn-success btn-sm m-1 col-3";
+            attClass.value = "btn btn-" + btnColor + " btn-sm m-1 col-10 col-sm-5 col-md-3 col-lg-2";
             oldBtn.setAttributeNode(attClass);
         }
 
         let curBtn = document.getElementById(id);
         attClass = curBtn.getAttributeNode('class');
-        attClass.value = "btn btn-outline-success btn-sm m-1 col-3"
+        attClass.value = "btn btn-outline-" + btnColor + " btn-sm m-1 col-10 col-sm-5 col-md-3 col-lg-2"
         curBtn.setAttributeNode(attClass);
         currentBtn = id;
     }
@@ -26,8 +28,8 @@ function initRadioButtons() {
         let textOfBtn = document.createTextNode(stations[i].name);
         let attBtn = document.createAttribute("class");
         let attId = document.createAttribute("id");
-        attBtn.value = "btn btn-success btn-sm m-1 col-3";
-        attId.value = "button"+i;
+        attBtn.value = "btn btn-" + btnColor + " btn-sm m-1 col-10 col-sm-5 col-md-3 col-lg-2";
+        attId.value = "button" + i;
         btn.setAttributeNode(attBtn);
         btn.setAttributeNode(attId);
         btn.addEventListener("click", function () {
@@ -38,6 +40,12 @@ function initRadioButtons() {
         btnsDiv.appendChild(btn);
     }
     setCaptionByUrl('');
+    document.getElementById('rangeVolume').value = 0.7;
+}
+
+function changeEventHandle(event) {
+    let value = document.getElementById('rangeVolume').value;
+    Howler.volume(value);
 }
 
 function playLocalMusic(url) {
@@ -61,7 +69,7 @@ function playLocalMusic(url) {
 
 function setCaptionByUrl(url) {
     let name = '';
-    if (url.length === 0){
+    if (url.length === 0) {
         name = 'Stoped';
     } else {
         for (let i = 0; i < stations.length; i++) {
@@ -71,7 +79,7 @@ function setCaptionByUrl(url) {
             }
         }
     }
-    
+
     document.getElementById('caption').innerHTML = name;
 }
 
